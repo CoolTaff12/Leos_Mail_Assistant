@@ -40,16 +40,6 @@ namespace Leos_Mail_Assistant
         MarkupConverter markupConverter = new MarkupConverter();
         List<String> fileLocation = new List<string>();
 
-
-        //splittingBy.Items.Add("Scores");
-        /*mvcheckedList.SetItemChecked(0, true);
-                mvcheckedList.Items.Add("Valid N");
-                mvcheckedList.SetItemChecked(1, true);
-                mvcheckedList.Items.Add("StdDev");
-                mvcheckedList.SetItemChecked(2, false);
-                mvcheckedList.Items.Add("Std Loading");
-                mvcheckedList.Items.Add("Unstd Weight");*/
-
         public MainForm()
         {
             InitializeComponent();
@@ -69,16 +59,6 @@ namespace Leos_Mail_Assistant
             listBox1.Items.Add("--- Time: " + DateTime.Now);
             listBox1.Refresh();
             string toWho = "", toWhere = "";
-
-            //if(fromName.Text.ToString().Length == 0)
-            //{
-            //    toWho = "Name and stuff";
-            //}
-            //else
-            //{
-            //    toWho = fromName.Text.ToString();
-            //}
-
 
             //Seperate this code so that it takes all of the contact in the list
             List<MailAddress> to = new List<MailAddress>();
@@ -100,7 +80,6 @@ namespace Leos_Mail_Assistant
                     SaveContacts.toList[i] += " |";
                 }
 
-                //string cResond = SaveContacts.toList[i].Split('|')[0].Trim();
                 int fResondLength = SaveContacts.toList[i].Split('|').Length - 1;
                 string fResond = SaveContacts.toList[i].Split('|')[fResondLength].Trim();
                 if(SaveContacts.toList[i].Split('|')[fResondLength].Trim().Length == 0)
@@ -122,7 +101,6 @@ namespace Leos_Mail_Assistant
                 else
                 {
                     shouldSendOut = true;
-                    //to.Add(new MailAddress(cResond, ""));
                 }
 
                 if (fResond.Length == 0)
@@ -166,21 +144,6 @@ namespace Leos_Mail_Assistant
                 if (shouldSendOut)
                 {
                     listBox1.Items.Add("All senders adresses are valid!");
-                    //if (SaveContacts.urlList != null)
-                    //{
-                    //    foreach (string uniformResourceLocators in SaveContacts.urlList)
-                    //    {
-                    //        URLS.Add(uniformResourceLocators);
-                    //    }
-                    //}
-
-                    //if (SaveContacts.toNameList != null)
-                    //{
-                    //    foreach (string yourName in SaveContacts.toNameList)
-                    //    {
-                    //        toName.Add(yourName);
-                    //    }
-                    //}
 
                     System.Windows.Controls.RichTextBox rtb = new System.Windows.Controls.RichTextBox();
 
@@ -287,10 +250,6 @@ namespace Leos_Mail_Assistant
             }
         }
 
-        //private void SendingEmailOutLook(string _subject, string body, List<string> _respondentURL, List<string> _respodentName,
-        //    string _toWho, string _toWhere,
-        //    List<MailAddress> _to,
-        //    List<MailAddress> _cc, List<MailAddress> _bcc = null)
         private void SendingEmailOutLook(string _subject, string body, string _respondentURL, string _respodentName,
             string _toWho, string _toWhere,
             string _to, int iDontCare,
@@ -346,9 +305,6 @@ namespace Leos_Mail_Assistant
                 listBox1.Refresh();
 
                 //To list should be for all email they can send the link to
-                // for (int j = 0; j < _to.Count(); j++)
-                // {
-                //listBox1.Items.Add("Sending email to " + _to[j]);
                 listBox1.Items.Add("Sending email to " + _to);
                 Outlook.MailItem mailItem = app.CreateItem(Outlook.OlItemType.olMailItem);
 
@@ -362,10 +318,7 @@ namespace Leos_Mail_Assistant
                 }
 
                 mailItem.Subject = _subject;
-                //mailItem.To = _to[j].ToString();
                 mailItem.To = _to;
-                //mailItem.SentOnBehalfOfName = _toWhere;
-                //mailItem.Sender.Name = _toWho;
                 if (fromName.Text.Length > 2)
                 {
                     mailItem.SentOnBehalfOfName = fromName.Text;
@@ -382,9 +335,6 @@ namespace Leos_Mail_Assistant
                 //Mailto function starts here where it takes the template and transfer it
                 if (haveMailto.Checked)
                 {
-                    //for (int i = 0; i < SaveContacts.toList.Count(); i++)
-                    //{
-
                         if (SaveContacts.toList[iDontCare].Split('|')[1].Contains(_toWhere))
                         {
                             string emailforCostumersCostumers = "";
@@ -413,16 +363,7 @@ namespace Leos_Mail_Assistant
                                    nameforCostumersCostumers);
                         }
                        
-                   // }
                 }
- //if (_respondentURL.Count > 0 && body.Contains("[URL]"))
-                        //{
-                        //    body = body.Replace("[URL]", _respondentURL[j]);
-                        //}
-                        //if (_respodentName.Count > 0 && body.Contains("[FNAME]"))
-                        //{
-                        //    body = body.Replace("[FNAME]", _respodentName[j]);
-                        //}
                         if (body.Contains("[URL]"))
                         {
                             body = body.Replace("[URL]", _respondentURL + "<br>");
@@ -443,7 +384,6 @@ namespace Leos_Mail_Assistant
                         }
                         if (body.Contains("[FEMAIL]"))
                         {
-                            //body = body.Replace("[FEMAIL]", _to[j].ToString());
                             body = body.Replace("[FEMAIL]", _to.ToString());
                         }
                         if (body.Contains("[PFIRSTNAME]"))
@@ -472,10 +412,7 @@ namespace Leos_Mail_Assistant
                             body = body.Replace("[SIG]", readMySignature);
                         }
 
-                        //string dummy = mailItem.HTMLBody;
-                        //mailItem.HTMLBody = mailItem.HTMLBody.Replace("<!-- Converted from text/plain format -->",
-                        //                                               "<table cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#F9F9F9\">" + body.Replace("[RemoveLaterz]", "<br>")) + "<br>" + readMySignature + "</table>";
-                        mailItem.HTMLBody = mailItem.HTMLBody.Replace("<!-- Converted from text/plain format -->",
+                         mailItem.HTMLBody = mailItem.HTMLBody.Replace("<!-- Converted from text/plain format -->",
                                                                        body.Replace("[RemoveLaterz]", "<br>"));
 
                         if (fileLocation.Count > 0)
@@ -494,17 +431,7 @@ namespace Leos_Mail_Assistant
                         mailItem.Send();
                         listBox1.Items.Add("Successful sent the email!");
                         listBox1.Refresh();
-             
-                //mailItem.Delete();
-                // }
             }
-            //}
-            //catch(Exception ex)
-            //{
-            //    listBox1.Items.Add("Error: Delivery failed. \n\n Either you or the outlook server denied to send it out");
-            //    listBox1.Items.Add(ex);
-            //    listBox1.Refresh();
-            //}
 
         }
 
@@ -624,10 +551,6 @@ namespace Leos_Mail_Assistant
                         listBox1.Items.Add("Failed sending email to " + _to[j] + " with " + s);
                         msgMail.Dispose();
                         listBox1.Refresh();
-                        /*MessageBox.Show("Error: The Host adress '" + theHost
-                            + "' didn't work. Please try this again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        MessageBox.Show("Error: " + ex.Message + "\n\nThis error happened when you where going through " +
-                            _to[i] + "\n\n-Please!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
                     }
                 }
             }
@@ -756,7 +679,6 @@ namespace Leos_Mail_Assistant
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 List<string> FileNameList = new List<string>();
-                //savedFileName = Path.GetFileNameWithoutExtension(ofd.FileName);
                 foreach (string filename in ofd.FileNames)
                 {
                     FileNameList.Add(filename);

@@ -32,3 +32,6 @@ H:\Leos_Mail_Assistant\Leos_Mail_Assistant\obj\Debug\Leos_Mail_Assistant.MainFor
 H:\Leos_Mail_Assistant\Leos_Mail_Assistant\obj\Debug\Leos_Mail_Assistant.Properties.Resources.resources
 H:\Leos_Mail_Assistant\Leos_Mail_Assistant\obj\Debug\Leos_Mail_Assistant.To_Form.resources
 H:\Leos_Mail_Assistant\Leos_Mail_Assistant\obj\Debug\Leos_Mail_Assistant.csproj.GenerateResource.Cache
+C:\Users\leta\Documents\GitHub\Leos_Mail_Assistant\Leos_Mail_Assistant\bin\Debug\Leos_Mail_Assistant.exe.config
+C:\Users\leta\Documents\GitHub\Leos_Mail_Assistant\Leos_Mail_Assistant\obj\Debug\Leos_Mail_Assistant.exe
+C:\Users\leta\Documents\GitHub\Leos_Mail_Assistant\Leos_Mail_Assistant\obj\Debug\Leos_Mail_Assistant.pdb
